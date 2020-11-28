@@ -334,6 +334,16 @@ a b {
 .footer ul li a {
   color: #888;
 }
+#vietnam a,
+#hanquoc a,
+#aumy a {
+  color: black;
+}
+#vietnam a:hover,
+#hanquoc a:hover,
+#aumy a:hover {
+  text-decoration: none;
+}
 .chua-icon-go-up1 {
   width: 35px;
   height: 35px;
