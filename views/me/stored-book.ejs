@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../public/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel
+    ="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<body>
+    <div class="p-3 mb-2 bg-dark text-white mt m-lg-auto" style="width:100%; display: flex; flex-direction: row;">
+        <div class="collapse navbar-collapse" style="display: flex; flex-direction: row; list-style: none;">
+            <a href="https://www.facebook.com/notsokka/" target="_blank" title="It's me"><li style="margin-left: 30px; font-weight: 500;">LÊ VĂN HÀ</li></a>
+            <a href="/books"><li style="margin-left: 30px; font-weight: 500;">HOME PAGE</li></a>
+        </div>
+            <div class="dropdown nav-item m-lg-auto">
+                <a class="dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" style="margin-right: 100px;font-weight: 500;" >
+                    <img src="https://media.tenor.co/images/a3ef12891434d1a97d124c7faf633904/tenor.gif?t=AAW7vqb-cRMKSkaVMgOkmw&itemid=4860090&fbclid=IwAR0CBwq8hgkfhvxqtddpUN-6NkV2zxHN9tz1hTIfpwSggIcjDmZJsX61RuE" class="user-avt">
+                    LÊ VĂN HÀ
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="z-index: 112;">
+                    <a class="dropdown-item" href="/books/create" style="color : black; font-weight: 500;">Đăng tải sách</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="me" style="color : black; font-weight: 500;">Kho sách</a>
+                </div>
+            </div>
+    </div>
+    <div class="container">
+    <div class="mt-4">
+        <h3>SÁCH CỦA TÔI</h3>
+        <a href="me/trash" style="text-decoration: none;">
+            Thùng rác
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg>  
+        </a>
+      
+    </div>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên sách</th>
+                <th scope="col">Đơn giá</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        <% for(let i = 0 ; i < book.length ; i++){ %> 
+    
+            <tr>
+                <th scope="row"><%= i+1 %></th>
+                <td><a href="/books/<%= book[i].slug %>" style="text-decoration: none;"><%= book[i].name %></a></td>
+                <td> <%= book[i].price %> </td>
+                <td> <%= book[i].total %> </td>
+                <td>
+                    <a href="/me/<%=book[i]._id%>/edit" class="btn btn-outline-dark">Sửa</a>
+                    <a href="" class="btn btn-outline-dark" data-toggle="modal" data-target="#delete-book-modal" data-_id="<%= book[i]._id %>">Xóa</a>
+                </td>
+            </tr>
+        <% } %>
+        <% if(!book.length) { %>
+          <tr>
+              <td colspan="5" class="text-center">
+                  Chưa đăng tải cuốn sách nào.
+                  <a href="/books/create">Đăng tải sách</a>
+              </td>
+          </tr>
+      <% } %>
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+</body>
+</html>
+<!-- Modal -->
+<div id="delete-book-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xóa sách ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn chắc chắn muốn xóa quyển sách này ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+        <button id="btn-delete-book" type="button" class="btn btn-danger">Xóa bỏ</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- delete hidden form -->
+<form method="POST" name="delete-book-form">
+<script>
+    document.addEventListener('DOMContentLoaded',() => {
+          var BookId;
+          var deleteForm = document.forms['delete-book-form'];
+          var deleteBook = document.getElementById('btn-delete-book');
+        //When dialog confirm clicked
+          $('#delete-book-modal').on('show.bs.modal', function (event) {
+          const button = $(event.relatedTarget);
+          BookId = button.data('_id');
+    });
+    deleteBook.onclick = function(){
+        deleteForm.action = 'me/' + BookId + '/delete?_method=DELETE';
+        deleteForm.submit();
+    }
+   
+})
+</script>
